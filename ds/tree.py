@@ -15,13 +15,17 @@ class Tree(object):
     def __repr__(self):
         return str(self.attribute)+":"+str(self.value)
 
-    @property
-    def value(self):
-        return (self.attribute, self.value)
-
     def __eq__(self, other):
         assert isinstance(other, Tree), "Can only compare with objects of same type"
         if other.attribute == self.attribute:
+            return True
+        return False
+
+    def __hash__(self):
+        return hash(str(self.attribute) + str(self.value))
+
+    def hasChild(self):
+        if self.children:
             return True
         return False
 
